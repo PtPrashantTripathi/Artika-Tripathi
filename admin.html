@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>निमंत्रण लिंक जनरेटर</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="paper">
+  <div class="container">
+    <!-- Password gate -->
+    <div class="admin-box card-frame" id="gate">
+      <h1 class="section-title">🔒 एडमिन</h1>
+      <form id="gate-form" style="margin-top:1rem">
+        <label for="pw">पासवर्ड</label>
+        <input type="password" id="pw" autocomplete="current-password" />
+        <p id="gate-err" class="hidden" style="color:#b3261e" role="alert"></p>
+        <p style="margin-top:.75rem"><button class="btn" type="submit">खोलें</button></p>
+      </form>
+    </div>
+
+    <!-- Link generator -->
+    <div class="admin-box hidden" id="app">
+      <h1 class="section-title">निमंत्रण लिंक बनाएँ</h1>
+      <p class="section-sub">मेहमान का नाम लिखें, लिंक कॉपी करें या सीधे WhatsApp पर भेजें</p>
+
+      <div class="card-frame" style="margin-top:1.5rem">
+        <form id="gen" class="rsvp" novalidate>
+          <div>
+            <label for="to">मेहमान का नाम (नाम और उपनाम)</label>
+            <input type="text" id="to" maxlength="60" placeholder="जैसे: रमेश शर्मा" autocomplete="off" />
+          </div>
+          <div class="radio-row" role="radiogroup" aria-label="परिवार">
+            <label><input type="radio" name="fam" value="1" checked /> सपरिवार (परिवार सहित)</label>
+            <label><input type="radio" name="fam" value="0" /> सिर्फ़ इन्हें (अकेले)</label>
+          </div>
+          <div>
+            <label for="phone">मेहमान का WhatsApp नंबर (वैकल्पिक)</label>
+            <input type="text" id="phone" inputmode="tel" placeholder="919876543210 — खाली हो तो WhatsApp contact चुनने देगा" />
+          </div>
+          <p id="gen-err" class="hidden" style="color:#b3261e" role="alert">कृपया नाम लिखें।</p>
+          <button class="btn gold" type="submit">लिंक बनाएँ</button>
+        </form>
+
+        <div id="result" class="hidden" style="margin-top:1.25rem">
+          <p class="muted">आपका लिंक:</p>
+          <div class="link-out" id="link"></div>
+          <div class="actions">
+            <button class="btn" id="copy" type="button">कॉपी करें</button>
+            <a class="btn green" id="wa" target="_blank" rel="noopener">WhatsApp पर भेजें</a>
+            <a class="btn outline" id="preview" target="_blank" rel="noopener">देखें</a>
+          </div>
+          <p id="copied" class="muted hidden" role="status">कॉपी हो गया ✓</p>
+        </div>
+      </div>
+
+      <div class="card-frame hidden" id="history-box" style="margin-top:2rem">
+        <h2 class="font-display" style="color:var(--primary);font-size:1.3rem">पहले बनाए गए लिंक</h2>
+        <ul class="saved" id="history"></ul>
+        <p style="margin-top:.75rem"><button class="btn outline" id="clear" type="button">सूची साफ़ करें</button></p>
+      </div>
+
+      <details style="margin-top:2rem">
+        <summary class="muted" style="cursor:pointer">नया पासवर्ड बदलना है?</summary>
+        <div style="margin-top:.75rem">
+          <label for="newpw">नया पासवर्ड</label>
+          <input type="text" id="newpw" autocomplete="off" />
+          <p style="margin-top:.5rem"><button class="btn outline" id="hashbtn" type="button">Hash बनाएँ</button></p>
+          <div class="link-out hidden" id="hashout"></div>
+          <p class="muted" style="font-size:.85rem">इस hash को js/invitation.js में <code>adminPasswordSha256</code> की जगह चिपकाएँ। ध्यान रहे: static site में यह सिर्फ़ हल्का lock है; पासवर्ड कोई भी source देखकर तोड़ सकता है।</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <script src="js/invitation.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
