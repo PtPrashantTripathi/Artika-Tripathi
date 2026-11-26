@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>आर्तिका का प्रथम जन्मदिवस — सादर आमंत्रण</title>
   <meta name="description" content="त्रिपाठी परिवार की ओर से आर्तिका के प्रथम जन्मदिवस पर सादर आमंत्रण — 12 दिसम्बर 2026, निज निवास, पोंडी, महाराजपुर, मण्डला।" />
-  <meta name="theme-color" content="#8c1d2c" />
+  <meta name="theme-color" content="#d6336c" />
   <meta property="og:title" content="आर्तिका का प्रथम जन्मदिवस — सादर आमंत्रण" />
   <meta property="og:description" content="12 दिसम्बर 2026 · रात्रि 8 से 10 बजे · निज निवास, पोंडी, महाराजपुर, मण्डला" />
   <meta property="og:image" content="img/hero.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Rozha+One&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Mukta:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -19,6 +19,7 @@
     <div class="card reveal">
       <p class="gold-text font-display" style="font-size:1.4rem">॥ श्री गणेशाय नमः ॥</p>
       <div class="seal" aria-hidden="true">१</div>
+      <p class="font-script" style="font-size:1.6rem;color:var(--gold)">Happy 1st Birthday</p>
       <p class="muted">सादर आमंत्रण</p>
       <p class="font-display" style="font-size:1.6rem;color:var(--primary)" id="env-name"></p>
       <p id="env-to" class="muted" style="margin-top:.5rem"></p>
@@ -32,7 +33,7 @@
       <div id="balloons" aria-hidden="true"></div>
       <div class="inner">
         <p class="gold-text font-display" style="font-size:1.6rem">॥ श्री गणेशाय नमः ॥</p>
-        <img class="ganesha" src="img/ganesha.jpg" alt="श्री गणेश" width="150" height="150" />
+        <div class="medallion"><img class="ganesha" src="img/ganesha.jpg" alt="श्री गणेश" width="150" height="150" /></div>
         <p class="muted">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br />निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
         <div class="divider" style="margin:1rem 0"><span>❁</span></div>
         <p class="muted">त्रिपाठी परिवार की ओर से</p>
@@ -64,14 +65,16 @@
           <div class="info-card"><div class="label">📍 स्थान</div><div class="value" id="venue"></div><div class="muted" id="venue-addr" style="font-size:.9rem"></div></div>
         </div>
         <p class="center" style="margin-top:1.25rem"><a id="maps" class="btn gold" target="_blank" rel="noopener">नक्शे में देखें</a></p>
-        <p class="section-sub" style="margin-top:2rem">शुभ घड़ी में शेष समय</p>
-        <div class="countdown" id="countdown" aria-live="off">
-          <div><b id="cd-d">–</b><span>दिन</span></div>
-          <div><b id="cd-h">–</b><span>घंटे</span></div>
-          <div><b id="cd-m">–</b><span>मिनट</span></div>
-          <div><b id="cd-s">–</b><span>सेकंड</span></div>
+        <div class="band">
+          <p class="gold-text font-display" style="font-size:1.4rem">शुभ घड़ी में शेष समय</p>
+          <div class="countdown" id="countdown" aria-live="off">
+            <div><b id="cd-d">–</b><span>दिन</span></div>
+            <div><b id="cd-h">–</b><span>घंटे</span></div>
+            <div><b id="cd-m">–</b><span>मिनट</span></div>
+            <div><b id="cd-s">–</b><span>सेकंड</span></div>
+          </div>
+          <p id="cd-done" class="center font-display gold-text" style="font-size:1.5rem" hidden>आज आर्तिका का जन्मदिन है! 🎉</p>
         </div>
-        <p id="cd-done" class="center font-display" style="color:var(--primary);font-size:1.4rem" hidden>आज आर्तिका का जन्मदिन है! 🎉</p>
       </section>
 
       <section>
@@ -87,9 +90,10 @@
 
       <section>
         <h2 class="section-title">बाल मनुहार</h2>
+        <p class="section-sub">भाई यज्ञ की ओर से</p>
         <div class="poem" style="margin-top:1.25rem">
           <div id="poem"></div>
-          <p class="font-script" style="font-size:1.6rem;color:var(--primary);margin-top:.75rem">— Artika</p>
+          <p class="font-display" id="poem-by" style="font-size:1.3rem;font-weight:700;color:var(--primary);margin-top:.75rem"></p>
         </div>
       </section>
 
@@ -128,6 +132,9 @@
     <button class="close" id="lb-close" aria-label="बंद करें">×</button>
     <figure style="margin:0"><img id="lb-img" alt="" /><figcaption id="lb-cap" class="muted"></figcaption></figure>
   </dialog>
+
+  <audio id="bgm" src="audio/music.wav" loop preload="auto"></audio>
+  <button id="music-btn" class="music-btn hidden" type="button" aria-label="संगीत बंद/चालू करें" aria-pressed="true">🔊</button>
 
   <script src="js/invitation.js"></script>
   <script src="js/app.js"></script>

@@ -44,6 +44,7 @@
     li.appendChild(el('div', 'n', p.title))
     $('programme').appendChild(li)
   })
+  $('poem-by').textContent = inv.poemBy
   inv.poem.forEach(function (line) { $('poem').appendChild(el('p', null, line)) })
   inv.hosts.forEach(function (h) {
     var d = el('div', 'host')
@@ -54,7 +55,7 @@
   if (!inv.whatsappNumber) $('rsvp-section').classList.add('hidden')
 
   /* ---------- Balloons ---------- */
-  var colors = ['#e4572e', '#f2b134', '#c2185b', '#2e86ab', '#6aa84f', '#8c1d2c']
+  var colors = ['#ff9ebb', '#ffd36e', '#cdb4ff', '#9fe0c4', '#ff7aa8', '#ffb98a']
   colors.forEach(function (c, i) {
     var b = el('span', 'balloon')
     b.style.left = 8 + i * 16 + '%'
@@ -65,7 +66,7 @@
   })
 
   /* ---------- Petals + envelope ---------- */
-  var petalColors = ['#f29a1d', '#f8c33a', '#e0556b', '#f6d9d7']
+  var petalColors = ['#ff9ebb', '#ffc4d8', '#ff7aa8', '#e6d9ff', '#ffe08a']
   function shower() {
     if (reduceMotion) return
     for (var i = 0; i < 40; i++) {
@@ -78,6 +79,58 @@
       setTimeout(function (n) { n.remove() }.bind(null, p), 9000)
     }
   }
+  /* ---------- Sparkles in hero ---------- */
+  var heroEl = document.querySelector('header.hero')
+  for (var s = 0; s < 28; s++) {
+    var sp = el('span', 'sparkle')
+    sp.style.left = Math.random() * 100 + '%'
+    sp.style.top = Math.random() * 100 + '%'
+    sp.style.animationDelay = Math.random() * 3 + 's'
+    sp.style.animationDuration = 2 + Math.random() * 3 + 's'
+    heroEl.appendChild(sp)
+  }
+
+  /* ---------- Floating hearts / stars in hero ---------- */
+  var shapes = ['♥', '✦', '★', '❀', '♥']
+  for (var h = 0; h < 14; h++) {
+    var ht = el('span', 'heart', shapes[h % shapes.length])
+    ht.style.left = Math.random() * 94 + '%'
+    ht.style.bottom = Math.random() * 25 + '%'
+    ht.style.fontSize = 14 + Math.random() * 18 + 'px'
+    ht.style.animationDelay = Math.random() * 8 + 's'
+    ht.style.animationDuration = 7 + Math.random() * 6 + 's'
+    heroEl.appendChild(ht)
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target) }
+      })
+    }, { threshold: 0.12 })
+    document.querySelectorAll('main section').forEach(function (n) { n.classList.add('rv'); io.observe(n) })
+  }
+
+  /* ---------- Background music (needs a tap, so it starts on "open") ---------- */
+  var bgm = $('bgm')
+  var musicBtn = $('music-btn')
+  var wantMusic = true
+  function setMusicUi(on) {
+    musicBtn.textContent = on ? '🔊' : '🔇'
+    musicBtn.setAttribute('aria-pressed', String(on))
+  }
+  bgm.volume = 0.6
+  bgm.addEventListener('error', function () { musicBtn.classList.add('hidden') })
+  musicBtn.addEventListener('click', function () {
+    if (bgm.paused) { wantMusic = true; bgm.play().catch(function () {}); setMusicUi(true) }
+    else { wantMusic = false; bgm.pause(); setMusicUi(false) }
+  })
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) bgm.pause()
+    else if (wantMusic && !musicBtn.classList.contains('hidden') && !$('envelope')) bgm.play().catch(function () {})
+  })
+
   document.body.style.overflow = 'hidden'
   $('open-btn').addEventListener('click', function () {
     var env = $('envelope')
@@ -85,6 +138,9 @@
     document.body.style.overflow = ''
     setTimeout(function () { env.remove() }, 650)
     shower()
+    bgm.play().then(function () {
+      musicBtn.classList.remove('hidden'); setMusicUi(true)
+    }, function () { /* missing/blocked file: stay silent */ })
   })
 
   /* ---------- Countdown ---------- */

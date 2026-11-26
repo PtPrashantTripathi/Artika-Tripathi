@@ -22,13 +22,21 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      # Pages ko khud enable kar deta hai (Settings me jaane ki zarurat nahi)
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Keep only the static site
         run: |
           mkdir _site
-          cp -r index.html admin.html css js img _site/
+          cp -r index.html admin.html css js img audio _site/
           touch _site/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
       - id: deployment
         uses: actions/deploy-pages@v4
