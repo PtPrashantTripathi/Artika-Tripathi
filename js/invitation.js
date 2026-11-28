@@ -25,7 +25,7 @@ window.INVITATION = {
    * RSVP WhatsApp number: country code ke saath, bina + ya space ke. Jaise '919876543210'.
    * Khaali chhodne par RSVP form chhup jata hai.
    */
-  whatsappNumber: '',
+  whatsappNumber: '917879286549',
 
   programme: [
     { time: 'रात्रि 8:00 बजे', title: 'स्वागत एवं आशीर्वाद समारोह' },
@@ -63,11 +63,4 @@ window.INVITATION = {
     'इसलिए हाथ जोड़कर करता हूँ मनुहार,',
     'हम दोनों के जन्मदिन में आइए, देने आशीष और प्यार।',
   ],
-
-  /**
-   * Admin page ka password — SHA-256 hash. Abhi password: artika2026
-   * Badalne ke liye admin.html kholkar neeche "नया पासवर्ड" wala box use karein.
-   * (Static site me ye sirf halka sa lock hai, asli security nahi.)
-   */
-  adminPasswordSha256: 'a5ce51c3536aa02921e0417ea87ee47306cd668ca0ba5b9ff6062722469447ba',
 }

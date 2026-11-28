@@ -2,40 +2,6 @@
   var inv = window.INVITATION
   var $ = function (id) { return document.getElementById(id) }
   var KEY = 'artika-admin-links'
-  var UNLOCK = 'artika-admin-unlocked'
-
-  function sha256(text) {
-    if (!window.crypto || !crypto.subtle) return Promise.reject(new Error('insecure'))
-    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buf) {
-      return Array.prototype.map.call(new Uint8Array(buf), function (b) { return b.toString(16).padStart(2, '0') }).join('')
-    })
-  }
-
-  /* ---------- Password gate ---------- */
-  function unlock() {
-    sessionStorage.setItem(UNLOCK, inv.adminPasswordSha256)
-    $('gate').classList.add('hidden')
-    $('app').classList.remove('hidden')
-    renderHistory()
-    $('to').focus()
-  }
-  if (sessionStorage.getItem(UNLOCK) === inv.adminPasswordSha256) unlock()
-
-  $('gate-form').addEventListener('submit', function (e) {
-    e.preventDefault()
-    var err = $('gate-err')
-    sha256($('pw').value).then(function (h) {
-      if (h === inv.adminPasswordSha256) {
-        unlock()
-      } else {
-        err.textContent = 'गलत पासवर्ड।'
-        err.classList.remove('hidden')
-      }
-    }, function () {
-      err.textContent = 'यह पेज https या localhost पर खोलें (GitHub Pages पर ठीक चलेगा)।'
-      err.classList.remove('hidden')
-    })
-  })
 
   /* ---------- Link generation ---------- */
   function baseUrl() {
@@ -116,12 +82,6 @@
     renderHistory()
   })
 
-  $('hashbtn').addEventListener('click', function () {
-    var v = $('newpw').value
-    if (!v) return
-    sha256(v).then(function (h) {
-      $('hashout').textContent = h
-      $('hashout').classList.remove('hidden')
-    })
-  })
+  renderHistory()
+  $('to').focus()
 })()

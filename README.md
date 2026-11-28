@@ -8,7 +8,7 @@ Static site (कोई server/Node नहीं)। GitHub Pages पर चल�
 3. `main` पर push होते ही site live: `https://<username>.github.io/<repo>/`
 
 ## लिंक बनाना
-`https://<username>.github.io/<repo>/admin.html` खोलें (default password: `artika2026` — बदल लें, देखें `admin.html` में "नया पासवर्ड"), नाम लिखें, सपरिवार चुनें, लिंक कॉपी/WhatsApp करें।
+`https://<username>.github.io/<repo>/admin.html` खोलें (कोई password नहीं), नाम लिखें, सपरिवार चुनें, लिंक कॉपी/WhatsApp करें।
 
 ## बदलाव
 - सारी जानकारी, WhatsApp नंबर: `js/invitation.js`

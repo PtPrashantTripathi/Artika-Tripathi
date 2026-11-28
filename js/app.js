@@ -21,7 +21,6 @@
     $('greet-family').textContent = withFamily ? 'सपरिवार सादर आमंत्रित हैं' : 'सादर आमंत्रित हैं'
     $('env-to').textContent = guest + (withFamily ? ' एवं परिवार के लिए' : ' के लिए')
     $('r-name').value = guest
-    if (withFamily) $('r-guests').value = 4
   }
 
   /* ---------- Static content from invitation.js ---------- */
@@ -226,7 +225,6 @@
     if (!name) return
     var yes = document.querySelector('input[name=attending]:checked').value === 'yes'
     var lines = ['नमस्ते 🙏', name + (yes ? ' — हम ' + inv.namesShortHindi + ' के जन्मदिवस पर अवश्य आएँगे।' : ' — क्षमा करें, हम नहीं आ पाएँगे।')]
-    if (yes) lines.push('कुल लोग: ' + ($('r-guests').value || 1))
     if ($('r-msg').value.trim()) lines.push('संदेश: ' + $('r-msg').value.trim())
     window.open('https://wa.me/' + inv.whatsappNumber + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener')
     if (yes) shower()
