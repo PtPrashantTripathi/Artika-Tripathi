@@ -3,9 +3,14 @@
  * All editable details live here (index.html and admin.html both read this file).
  */
 window.INVITATION = {
-  childNameHindi: 'आर्तिका त्रिपाठी',
-  childNameEnglish: 'Artika Tripathi',
-  occasion: 'प्रथम जन्मदिवस',
+  /** Dono bachche — saath me janmdin. badge = hero photo par gol badge. */
+  children: [
+    { nameHindi: 'यज्ञ त्रिपाठी', nameEnglish: 'Yagya Tripathi', age: 'पाँचवाँ जन्मदिवस', badgeNum: '5', badgeLabel: 'यज्ञ' },
+    { nameHindi: 'अर्तिका त्रिपाठी', nameEnglish: 'Artika Tripathi', age: 'प्रथम जन्मदिवस', badgeNum: '1', badgeLabel: 'अर्तिका' },
+  ],
+  /** Title / share message me use hota hai */
+  eventTitleHindi: 'यज्ञ का पाँचवाँ एवं अर्तिका का प्रथम जन्मदिवस',
+  namesShortHindi: 'यज्ञ एवं अर्तिका',
 
   /** Countdown target (India time). 12 Dec 2026, 8:00 PM */
   eventStartISO: '2026-12-12T20:00:00+05:30',
@@ -30,34 +35,38 @@ window.INVITATION = {
 
   /** दर्शनाभिलाषी */
   hosts: [
-    { relation: 'दादा-दादी', names: 'श्री राम किशोर त्रिपाठी · श्रीमती सुदेश त्रिपाठी' },
-    { relation: 'माता-पिता', names: 'श्री प्रवीण त्रिपाठी · श्रीमती शुभांजलि त्रिपाठी' },
-    { relation: 'चाचा-चाची', names: 'पं. प्रशांत त्रिपाठी · श्रीमती दीपशिखा त्रिपाठी' },
+    { icon: 'flower-2', relation: 'दादा-दादी', names: 'श्री राम किशोर त्रिपाठी · श्रीमती सुदेश त्रिपाठी' },
+    { icon: 'heart', relation: 'माता-पिता', names: 'श्री प्रवीण त्रिपाठी · श्रीमती शुभांजली त्रिपाठी' },
+    { icon: 'sparkles', relation: 'चाचा-चाची', names: 'पं. प्रशांत त्रिपाठी · श्रीमती दीपशिखा त्रिपाठी' },
   ],
 
-  /** Asli photos ke liye img/ me same naam ki file badal dein (.jpg). */
-  heroPhoto: { file: 'hero.jpg', alt: 'नन्ही आर्तिका' },
+  /**
+   * Photos (img/ folder, JPEG). `pos` = square thumbnail me kaunsa hissa dikhe (CSS object-position).
+   * Asli photos badalne ke liye img/ me same naam ki file replace karein.
+   */
+  heroPhoto: { file: 'hero.jpg', alt: 'यज्ञ और अर्तिका केक के साथ' },
   photos: [
-    { file: 'photo1.jpg', alt: 'मुस्कुराती आर्तिका', caption: 'मेरी प्यारी मुस्कान' },
-    { file: 'photo2.jpg', alt: 'जन्मदिन का केक', caption: 'मेरा पहला केक' },
-    { file: 'photo3.jpg', alt: 'नन्हे पाँव', caption: 'नन्हे-नन्हे कदम' },
-    { file: 'photo4.jpg', alt: 'खेलती आर्तिका', caption: 'मेरी शरारतें' },
+    { file: 'photo1.jpg', alt: 'यज्ञ और अर्तिका पानी में खेलते हुए', caption: 'भाई-बहन की मस्ती', pos: '50% 15%' },
+    { file: 'photo2.jpg', alt: 'यज्ञ और अर्तिका कुर्सियों पर', caption: 'हम दोनों', pos: '50% 50%' },
+    { file: 'photo3.jpg', alt: 'अर्तिका भैया की गोद में', caption: 'भैया की गोद में', pos: '50% 45%' },
+    { file: 'photo4.jpg', alt: 'यज्ञ की मुस्कान', caption: 'मैं यज्ञ', pos: '50% 20%' },
+    { file: 'photo5.jpg', alt: 'यज्ञ केक के साथ', caption: 'मेरा केक', pos: '50% 25%' },
   ],
 
   /** बाल मनुहार — बड़े भाई यज्ञ की ओर से */
   poemBy: '— आपका नन्हा यज्ञ त्रिपाठी',
   poem: [
-    'मेरी दीदी का पहला जन्मदिन आया है,',
+    'मेरा और मेरी प्यारी बहना का जन्मदिन आया है,',
     'घर-आँगन में खुशियों का मेला सजाया है।',
     'गुब्बारे, केक और ढेरों मस्ती होगी,',
     'आपके आए बिना सूनी हर हस्ती होगी।',
     'इसलिए हाथ जोड़कर करता हूँ मनुहार,',
-    'मेरी दीदी के जन्मदिन में आइए, देने आशीष और प्यार।',
+    'हम दोनों के जन्मदिन में आइए, देने आशीष और प्यार।',
   ],
 
   /**
    * Admin page ka password — SHA-256 hash. Abhi password: artika2026
-   * Badalne ke liye admin.html kholkar neeche "नया पासवर्ड hash" wala box use karein.
+   * Badalne ke liye admin.html kholkar neeche "नया पासवर्ड" wala box use karein.
    * (Static site me ye sirf halka sa lock hai, asli security nahi.)
    */
   adminPasswordSha256: 'a5ce51c3536aa02921e0417ea87ee47306cd668ca0ba5b9ff6062722469447ba',

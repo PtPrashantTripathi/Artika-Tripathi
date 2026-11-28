@@ -51,7 +51,7 @@
   function save(list) { localStorage.setItem(KEY, JSON.stringify(list.slice(0, 200))) }
 
   function waLink(name, link, phone) {
-    var text = 'नमस्ते ' + name + ' जी 🙏\n' + inv.childNameHindi + ' के ' + inv.occasion + ' पर आप सादर आमंत्रित हैं।\n' +
+    var text = 'नमस्ते ' + name + ' जी 🙏\n' + inv.eventTitleHindi + ' पर आप सादर आमंत्रित हैं।\n' +
       '📅 ' + inv.dateHindi + ' · ' + inv.timeHindi + '\n📍 ' + inv.venueName + ', ' + inv.venueAddress + '\n\nनिमंत्रण देखें: ' + link
     var digits = (phone || '').replace(/\D/g, '')
     return 'https://wa.me/' + digits + '?text=' + encodeURIComponent(text)

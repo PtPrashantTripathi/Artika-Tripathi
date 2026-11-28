@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>आर्तिका का प्रथम जन्मदिवस — सादर आमंत्रण</title>
-  <meta name="description" content="त्रिपाठी परिवार की ओर से आर्तिका के प्रथम जन्मदिवस पर सादर आमंत्रण — 12 दिसम्बर 2026, निज निवास, पोंडी, महाराजपुर, मण्डला।" />
+  <title>यज्ञ एवं अर्तिका का जन्मदिवस — सादर आमंत्रण</title>
+  <meta name="description" content="त्रिपाठी परिवार की ओर से यज्ञ के पाँचवें एवं अर्तिका के प्रथम जन्मदिवस पर सादर आमंत्रण — 12 दिसम्बर 2026, निज निवास, पोंडी, महाराजपुर, मण्डला।" />
   <meta name="theme-color" content="#d6336c" />
-  <meta property="og:title" content="आर्तिका का प्रथम जन्मदिवस — सादर आमंत्रण" />
+  <meta property="og:title" content="यज्ञ एवं अर्तिका का जन्मदिवस — सादर आमंत्रण" />
   <meta property="og:description" content="12 दिसम्बर 2026 · रात्रि 8 से 10 बजे · निज निवास, पोंडी, महाराजपुर, मण्डला" />
   <meta property="og:image" content="img/hero.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,8 +18,8 @@
   <div id="envelope" class="envelope" role="dialog" aria-label="निमंत्रण">
     <div class="card reveal">
       <p class="gold-text font-display" style="font-size:1.4rem">॥ श्री गणेशाय नमः ॥</p>
-      <div class="seal" aria-hidden="true">१</div>
-      <p class="font-script" style="font-size:1.6rem;color:var(--gold)">Happy 1st Birthday</p>
+      <div class="seal" aria-hidden="true"><i class="ico" style="--i:url(../img/icons/cake.svg)"></i></div>
+      <p class="font-script" style="font-size:1.6rem;color:var(--gold)">Happy Birthday</p>
       <p class="muted">सादर आमंत्रण</p>
       <p class="font-display" style="font-size:1.6rem;color:var(--primary)" id="env-name"></p>
       <p id="env-to" class="muted" style="margin-top:.5rem"></p>
@@ -33,9 +33,8 @@
       <div id="balloons" aria-hidden="true"></div>
       <div class="inner">
         <p class="gold-text font-display" style="font-size:1.6rem">॥ श्री गणेशाय नमः ॥</p>
-        <div class="medallion"><img class="ganesha" src="img/ganesha.jpg" alt="श्री गणेश" width="150" height="150" /></div>
-        <p class="muted">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br />निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
-        <div class="divider" style="margin:1rem 0"><span>❁</span></div>
+        <div class="medallion"><img class="ganesha" src="img/bal-ganesh.jpg" alt="बाल गणेश" width="420" height="420" /></div>
+        <div class="divider" style="margin:1rem 0"><i class="ico" style="--i:url(../img/icons/flower-2.svg)"></i></div>
         <p class="muted">त्रिपाठी परिवार की ओर से</p>
         <h1>सादर आमंत्रण</h1>
 
@@ -47,12 +46,10 @@
 
         <div class="arch">
           <img id="hero-img" alt="" width="400" height="500" />
-          <div class="badge-one"><b>1</b>पहला<br />जन्मदिन</div>
+          <div id="badges"></div>
         </div>
-        <p class="muted" style="margin-top:1.5rem">हमारी लाडली बिटिया</p>
-        <p class="child-name gold-text" id="child-hi"></p>
-        <p class="font-script" style="font-size:1.8rem;color:var(--primary)" id="child-en"></p>
-        <p class="muted">का प्रथम जन्मदिवस</p>
+        <p class="muted" style="margin-top:1.75rem">हमारे लाडले एवं लाडली का जन्मदिवस</p>
+        <div class="kids" id="kids"></div>
       </div>
     </header>
 
@@ -60,9 +57,9 @@
       <section>
         <h2 class="section-title">कब और कहाँ</h2>
         <div class="grid3">
-          <div class="info-card"><div class="label">📅 तिथि</div><div class="value" id="date"></div></div>
-          <div class="info-card"><div class="label">🕗 समय</div><div class="value" id="time"></div></div>
-          <div class="info-card"><div class="label">📍 स्थान</div><div class="value" id="venue"></div><div class="muted" id="venue-addr" style="font-size:.9rem"></div></div>
+          <div class="info-card"><div class="label"><i class="ico" style="--i:url(../img/icons/calendar-days.svg)"></i>तिथि</div><div class="value" id="date"></div></div>
+          <div class="info-card"><div class="label"><i class="ico" style="--i:url(../img/icons/clock.svg)"></i>समय</div><div class="value" id="time"></div></div>
+          <div class="info-card"><div class="label"><i class="ico" style="--i:url(../img/icons/map-pin.svg)"></i>स्थान</div><div class="value" id="venue"></div><div class="muted" id="venue-addr" style="font-size:.9rem"></div></div>
         </div>
         <p class="center" style="margin-top:1.25rem"><a id="maps" class="btn gold" target="_blank" rel="noopener">नक्शे में देखें</a></p>
         <div class="band">
@@ -73,7 +70,7 @@
             <div><b id="cd-m">–</b><span>मिनट</span></div>
             <div><b id="cd-s">–</b><span>सेकंड</span></div>
           </div>
-          <p id="cd-done" class="center font-display gold-text" style="font-size:1.5rem" hidden>आज आर्तिका का जन्मदिन है! 🎉</p>
+          <p id="cd-done" class="center font-display gold-text" style="font-size:1.5rem" hidden>आज यज्ञ और अर्तिका का जन्मदिन है!</p>
         </div>
       </section>
 
@@ -117,13 +114,17 @@
 
       <section class="hosts">
         <h2 class="section-title">दर्शनाभिलाषी</h2>
-        <div id="hosts"></div>
+        <p class="section-sub">आपके आशीर्वाद और स्नेह के अभिलाषी</p>
+        <div class="family-card">
+          <div class="family-ribbon font-display">सपरिवार आपके स्वागत में</div>
+          <div id="hosts" class="hosts-grid"></div>
+        </div>
         <p style="margin-top:2rem"><button class="btn green" id="share">WhatsApp पर निमंत्रण भेजें</button></p>
       </section>
     </main>
 
     <footer>
-      <p class="font-display" style="font-size:1.3rem">स्नेह सहित ♥ त्रिपाठी परिवार</p>
+      <p class="font-display" style="font-size:1.3rem">स्नेह सहित <i class="ico" style="--i:url(../img/icons/heart.svg)"></i> त्रिपाठी परिवार</p>
       <p class="gold-text font-display">॥ शुभम् भवतु ॥</p>
     </footer>
   </div>
@@ -134,7 +135,7 @@
   </dialog>
 
   <audio id="bgm" src="audio/music.wav" loop preload="auto"></audio>
-  <button id="music-btn" class="music-btn hidden" type="button" aria-label="संगीत बंद/चालू करें" aria-pressed="true">🔊</button>
+  <button id="music-btn" class="music-btn hidden" type="button" aria-label="संगीत बंद/चालू करें" aria-pressed="true"><i class="ico" id="music-ico" style="--i:url(../img/icons/volume-2.svg)"></i></button>
 
   <script src="js/invitation.js"></script>
   <script src="js/app.js"></script>

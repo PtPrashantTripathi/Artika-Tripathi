@@ -25,10 +25,20 @@
   }
 
   /* ---------- Static content from invitation.js ---------- */
-  document.title = inv.childNameHindi + ' का ' + inv.occasion + ' — सादर आमंत्रण'
-  $('env-name').textContent = inv.childNameHindi
-  $('child-hi').textContent = inv.childNameHindi
-  $('child-en').textContent = inv.childNameEnglish
+  document.title = inv.eventTitleHindi + ' — सादर आमंत्रण'
+  $('env-name').textContent = inv.namesShortHindi
+  inv.children.forEach(function (c, i) {
+    if (i) $('kids').appendChild(el('p', 'amp font-script', '&'))
+    var k = el('div', 'kid')
+    k.appendChild(el('p', 'child-name gold-text', c.nameHindi))
+    k.appendChild(el('p', 'kid-en font-script', c.nameEnglish))
+    k.appendChild(el('p', 'kid-age muted', c.age))
+    $('kids').appendChild(k)
+    var b = el('div', 'badge-one' + (i ? '' : ' left'))
+    b.appendChild(el('b', null, c.badgeNum))
+    b.appendChild(document.createTextNode(c.badgeLabel))
+    $('badges').appendChild(b)
+  })
   $('date').textContent = inv.dateHindi
   $('time').textContent = inv.timeHindi
   $('venue').textContent = inv.venueName
@@ -48,8 +58,16 @@
   inv.poem.forEach(function (line) { $('poem').appendChild(el('p', null, line)) })
   inv.hosts.forEach(function (h) {
     var d = el('div', 'host')
+    var hi = el('div', 'host-icon')
+    var hico = el('i', 'ico')
+    hico.style.setProperty('--i', 'url(../img/icons/' + (h.icon || 'heart') + '.svg)')
+    hi.appendChild(hico)
+    d.appendChild(hi)
     d.appendChild(el('div', 'rel', h.relation))
-    d.appendChild(el('div', 'nm', h.names))
+    h.names.split(' · ').forEach(function (n, i) {
+      if (i) d.appendChild(el('div', 'host-amp', '♥'))
+      d.appendChild(el('div', 'nm', n))
+    })
     $('hosts').appendChild(d)
   })
   if (!inv.whatsappNumber) $('rsvp-section').classList.add('hidden')
@@ -91,9 +109,10 @@
   }
 
   /* ---------- Floating hearts / stars in hero ---------- */
-  var shapes = ['♥', '✦', '★', '❀', '♥']
+  var shapes = ['heart', 'sparkles', 'flower-2', 'heart', 'sparkles']
   for (var h = 0; h < 14; h++) {
-    var ht = el('span', 'heart', shapes[h % shapes.length])
+    var ht = el('i', 'heart ico')
+    ht.style.setProperty('--i', 'url(../img/icons/' + shapes[h % shapes.length] + '.svg)')
     ht.style.left = Math.random() * 94 + '%'
     ht.style.bottom = Math.random() * 25 + '%'
     ht.style.fontSize = 14 + Math.random() * 18 + 'px'
@@ -117,7 +136,7 @@
   var musicBtn = $('music-btn')
   var wantMusic = true
   function setMusicUi(on) {
-    musicBtn.textContent = on ? '🔊' : '🔇'
+    $('music-ico').style.setProperty('--i', 'url(../img/icons/' + (on ? 'volume-2' : 'volume-x') + '.svg)')
     musicBtn.setAttribute('aria-pressed', String(on))
   }
   bgm.volume = 0.6
@@ -175,6 +194,7 @@
     im.loading = 'lazy'
     im.width = 400
     im.height = 400
+    if (p.pos) im.style.objectPosition = p.pos
     b.appendChild(im)
     b.appendChild(el('span', 'cap', p.caption))
     b.addEventListener('click', function () {
@@ -191,7 +211,7 @@
   /* ---------- Share + RSVP (both via WhatsApp) ---------- */
   var pageUrl = location.href
   $('share').addEventListener('click', function () {
-    var text = inv.childNameHindi + ' के ' + inv.occasion + ' पर आप सादर आमंत्रित हैं। ' + pageUrl
+    var text = inv.eventTitleHindi + ' पर आप सादर आमंत्रित हैं। ' + pageUrl
     if (navigator.share) {
       navigator.share({ title: document.title, text: text }).catch(function () {})
     } else {
@@ -205,7 +225,7 @@
     $('rsvp-err').classList.toggle('hidden', !!name)
     if (!name) return
     var yes = document.querySelector('input[name=attending]:checked').value === 'yes'
-    var lines = ['नमस्ते 🙏', name + (yes ? ' — हम आर्तिका के जन्मदिवस पर अवश्य आएँगे।' : ' — क्षमा करें, हम नहीं आ पाएँगे।')]
+    var lines = ['नमस्ते 🙏', name + (yes ? ' — हम ' + inv.namesShortHindi + ' के जन्मदिवस पर अवश्य आएँगे।' : ' — क्षमा करें, हम नहीं आ पाएँगे।')]
     if (yes) lines.push('कुल लोग: ' + ($('r-guests').value || 1))
     if ($('r-msg').value.trim()) lines.push('संदेश: ' + $('r-msg').value.trim())
     window.open('https://wa.me/' + inv.whatsappNumber + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener')

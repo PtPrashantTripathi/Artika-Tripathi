@@ -94,6 +94,20 @@ h1, h2, h3, p { margin: 0; }
 @keyframes shimmer-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .reveal { animation: shimmer-in 0.9s ease-out both; }
 
+/* Icons: Lucide (ISC licence), recoloured via CSS mask — set --i:url(../img/icons/NAME.svg) */
+.ico {
+  display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em; background-color: currentColor;
+  -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat;
+}
+.info-card .label { display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+.info-card .label .ico { width: 1.2em; height: 1.2em; }
+.seal .ico { width: 2.1rem; height: 2.1rem; }
+.music-btn .ico { width: 1.5rem; height: 1.5rem; vertical-align: middle; }
+.host-icon .ico { width: 1.7rem; height: 1.7rem; vertical-align: middle; color: var(--primary-dark); }
+.divider .ico { width: 1.4rem; height: 1.4rem; }
+footer .ico { width: 1.1em; height: 1.1em; vertical-align: -0.1em; }
+.section-title .ico { vertical-align: -0.1em; }
+
 /* Floating hearts / stars in hero */
 .heart {
   position: absolute; pointer-events: none; color: var(--pink-deep); opacity: 0;
@@ -134,15 +148,14 @@ header.hero .inner { position: relative; padding: 1.5rem 1rem 0; }
 .hero h1 { font-family: var(--font-heading); font-weight: 800; font-size: 2.8rem; line-height: 1.2; color: var(--primary-dark); }
 
 .medallion {
-  position: relative; width: 190px; height: 215px; margin: 0.75rem auto; overflow: hidden; background: #fbf6e8;
-  border-radius: 9999px 9999px 1.25rem 1.25rem; border: 4px solid #fff;
+  position: relative; width: 132px; height: 132px; margin: 0.6rem auto; overflow: hidden; background: #f6d3c3;
+  border-radius: 50%; border: 4px solid #fff;
   box-shadow: 0 0 0 4px var(--pink-deep), 0 10px 26px rgb(214 51 108 / 0.3);
 }
-/* Image is a square with paper margins: oversize + centre so only Ganesha ji's artwork shows */
-.ganesha { position: absolute; left: 50%; top: 50%; width: auto; height: 118%; max-width: none; transform: translate(-50%, -50%); }
+.ganesha { width: 100%; height: 100%; object-fit: cover; }
 
 .arch {
-  width: 17rem; margin: 1.5rem auto 0; position: relative; padding: 8px;
+  width: min(100%, 23rem); margin: 1.5rem auto 0; position: relative; padding: 8px;
   border-radius: 9999px 9999px 1.5rem 1.5rem;
   background: linear-gradient(160deg, #fff, #ffc4d8); box-shadow: 0 0 0 5px #fff, 0 0 0 8px var(--pink-deep), 0 16px 36px rgb(214 51 108 / 0.35);
   animation: bob 5s ease-in-out infinite;
@@ -150,7 +163,7 @@ header.hero .inner { position: relative; padding: 1.5rem 1rem 0; }
 .arch img { border-radius: 9999px 9999px 1rem 1rem; width: 100%; aspect-ratio: 4/5; object-fit: cover; }
 @keyframes bob { 50% { transform: translateY(-8px); } }
 .badge-one {
-  position: absolute; right: -1.8rem; bottom: 1rem; width: 5.6rem; height: 5.6rem; border-radius: 50%;
+  position: absolute; right: -0.6rem; bottom: 1rem; width: 5.6rem; height: 5.6rem; border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #ff7aa8, #d6336c); color: #fff;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05;
   font-size: 0.72rem; border: 3px solid #fff; box-shadow: 0 6px 16px rgb(168 34 90 / 0.4);
@@ -164,8 +177,13 @@ header.hero .inner { position: relative; padding: 1.5rem 1rem 0; }
   border: 3px dashed var(--pink-deep); border-radius: 1.5rem; box-shadow: 0 8px 24px rgb(214 51 108 / 0.2);
 }
 .guest-greeting .name { font-family: var(--font-heading); font-weight: 800; font-size: 1.9rem; color: var(--primary); line-height: 1.3; }
-.child-name { font-family: var(--font-heading); font-weight: 800; font-size: 2.9rem; line-height: 1.2; }
-.hero #child-en { font-family: var(--font-script); color: var(--primary-dark) !important; font-size: 1.9rem !important; }
+/* gradient text is clipped to the line box, so keep it tall enough for Devanagari matras above/below */
+.child-name { font-family: var(--font-heading); font-weight: 800; font-size: 2.5rem; line-height: 1.7; padding: 0.1em 0.1em 0.05em; }
+.kids { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 0.25rem; }
+.kid-en { font-family: var(--font-script); color: var(--primary-dark); font-size: 1.5rem; line-height: 1.3; }
+.kid-age { font-weight: 700; margin-top: 0.1rem; }
+.kids .amp { font-size: 2.2rem; color: var(--primary); line-height: 1; }
+.badge-one.left { right: auto; left: -0.6rem; bottom: auto; top: 3.5rem; animation-delay: -1.5s; }
 
 .grid3 { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 1.5rem; }
 .info-card {
@@ -218,9 +236,9 @@ header.hero .inner { position: relative; padding: 1.5rem 1rem 0; }
 .timeline .n { font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; }
 
 /* Gallery */
-.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; margin-top: 1.5rem; }
+.gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.1rem; margin-top: 1.5rem; }
 .gallery button {
-  position: relative; padding: 0.5rem 0.5rem 2rem; border: 0; background: #fff; border-radius: 0.6rem; cursor: pointer; font: inherit;
+  width: calc(50% - 0.55rem); position: relative; padding: 0.5rem 0.5rem 2rem; border: 0; background: #fff; border-radius: 0.6rem; cursor: pointer; font: inherit;
   box-shadow: 0 8px 18px rgb(214 51 108 / 0.2); transition: transform .3s, box-shadow .3s;
 }
 .gallery button:nth-child(odd) { transform: rotate(-2deg); }
@@ -258,11 +276,34 @@ input[type=text], input[type=number], input[type=password], textarea, select {
 input[type=radio] { accent-color: var(--primary); width: 1.1rem; height: 1.1rem; }
 
 .hosts { text-align: center; }
-.host { margin-top: 1rem; padding: 0.9rem; background: #fff; border: 2px solid var(--border); border-radius: 1.25rem; }
-.host:nth-child(2) { background: var(--lav); border-color: #d3c0ff; }
-.host:nth-child(3) { background: var(--mint); border-color: #b5e3cc; }
-.host .rel { color: var(--primary); font-weight: 700; font-size: 0.95rem; }
-.host .nm { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; }
+/* Family blessing card */
+.family-card {
+  position: relative; margin-top: 2.5rem; padding: 2.5rem 1rem 1.25rem; border-radius: 2rem;
+  background: linear-gradient(180deg, #fff 0%, #fff0f5 100%);
+  border: 3px dashed var(--pink-deep); box-shadow: 0 12px 30px rgb(214 51 108 / 0.14);
+}
+.family-ribbon {
+  position: absolute; top: -1.2rem; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  padding: 0.35rem 1.5rem; border-radius: 9999px; color: #fff; font-weight: 700; font-size: 1.1rem;
+  background: linear-gradient(135deg, #ff6b9c, #d6336c); box-shadow: 0 6px 14px rgb(214 51 108 / 0.35);
+}
+.hosts-grid { display: grid; gap: 0; grid-template-columns: 1fr; }
+.host { position: relative; padding: 1.25rem 0.5rem; }
+.host + .host { border-top: 2px dotted var(--pink-deep); }
+.host-icon {
+  width: 3.4rem; height: 3.4rem; margin: 0 auto 0.4rem; border-radius: 50%; font-size: 1.6rem; line-height: 3.1rem;
+  background: var(--pink); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--pink-deep);
+}
+.host:nth-child(2) .host-icon { background: var(--lav); box-shadow: 0 0 0 2px #b9a0f5; }
+.host:nth-child(3) .host-icon { background: var(--mint); box-shadow: 0 0 0 2px #8fd2b2; }
+.host .rel {
+  display: inline-block; margin-bottom: 0.4rem; padding: 0.05rem 0.9rem; border-radius: 9999px;
+  background: var(--pink); color: var(--primary-dark); font-weight: 700; font-size: 0.95rem;
+}
+.host:nth-child(2) .rel { background: var(--lav); }
+.host:nth-child(3) .rel { background: var(--mint); }
+.host .nm { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; line-height: 1.5; color: var(--foreground); }
+.host-amp { color: var(--pink-deep); font-size: 0.8rem; line-height: 1.2; }
 
 footer { text-align: center; padding: 2rem 1rem 3.5rem; color: var(--primary); }
 footer .font-display { font-weight: 700; }
@@ -308,10 +349,16 @@ footer .font-display { font-weight: 700; }
 
 @media (min-width: 640px) {
   .grid3 { grid-template-columns: repeat(3, 1fr); }
-  .gallery { grid-template-columns: repeat(4, 1fr); }
+  .gallery button { width: calc(33.333% - 0.75rem); }
+  .hosts-grid { grid-template-columns: repeat(3, 1fr); }
+  .host + .host { border-top: 0; border-left: 2px dotted var(--pink-deep); }
   .hero h1 { font-size: 3.6rem; }
-  .child-name { font-size: 4rem; }
-  .medallion { width: 220px; height: 250px; }
+  .kids { flex-direction: row; justify-content: center; align-items: flex-start; gap: 1.5rem; }
+  .kids .amp { align-self: center; font-size: 3rem; }
+  .child-name { font-size: 3rem; }
+  .medallion { width: 150px; height: 150px; }
+  .arch { width: 28rem; }
+  .badge-one { right: -1.8rem; } .badge-one.left { left: -1.8rem; }
 }
 @media (max-width: 639px) { .balloon { display: none; } }
 @media (prefers-reduced-motion: reduce) {
