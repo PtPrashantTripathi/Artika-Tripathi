@@ -20,7 +20,6 @@
     $('greet-name').textContent = guest + ' जी'
     $('greet-family').textContent = withFamily ? 'सपरिवार सादर आमंत्रित हैं' : 'सादर आमंत्रित हैं'
     $('env-to').textContent = guest + (withFamily ? ' एवं परिवार के लिए' : ' के लिए')
-    $('r-name').value = guest
   }
 
   /* ---------- Static content from invitation.js ---------- */
@@ -69,7 +68,6 @@
     })
     $('hosts').appendChild(d)
   })
-  if (!inv.whatsappNumber) $('rsvp-section').classList.add('hidden')
 
   /* ---------- Balloons ---------- */
   var colors = ['#ff9ebb', '#ffd36e', '#cdb4ff', '#9fe0c4', '#ff7aa8', '#ffb98a']
@@ -207,7 +205,7 @@
   $('lb-close').addEventListener('click', function () { lb.close() })
   lb.addEventListener('click', function (e) { if (e.target === lb) lb.close() })
 
-  /* ---------- Share + RSVP (both via WhatsApp) ---------- */
+  /* ---------- Share via WhatsApp ---------- */
   var pageUrl = location.href
   $('share').addEventListener('click', function () {
     var text = inv.eventTitleHindi + ' पर आप सादर आमंत्रित हैं। ' + pageUrl
@@ -216,17 +214,5 @@
     } else {
       window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener')
     }
-  })
-
-  $('rsvp').addEventListener('submit', function (e) {
-    e.preventDefault()
-    var name = $('r-name').value.trim()
-    $('rsvp-err').classList.toggle('hidden', !!name)
-    if (!name) return
-    var yes = document.querySelector('input[name=attending]:checked').value === 'yes'
-    var lines = ['नमस्ते 🙏', name + (yes ? ' — हम ' + inv.namesShortHindi + ' के जन्मदिवस पर अवश्य आएँगे।' : ' — क्षमा करें, हम नहीं आ पाएँगे।')]
-    if ($('r-msg').value.trim()) lines.push('संदेश: ' + $('r-msg').value.trim())
-    window.open('https://wa.me/' + inv.whatsappNumber + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener')
-    if (yes) shower()
   })
 })()

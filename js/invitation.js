@@ -21,12 +21,6 @@ window.INVITATION = {
   venueAddress: 'पोंडी, महाराजपुर, मण्डला (म.प्र.)',
   mapsUrl: 'https://maps.app.goo.gl/hrseHJ1LMCEZGnLT8',
 
-  /**
-   * RSVP WhatsApp number: country code ke saath, bina + ya space ke. Jaise '919876543210'.
-   * Khaali chhodne par RSVP form chhup jata hai.
-   */
-  whatsappNumber: '917879286549',
-
   programme: [
     { time: 'रात्रि 8:00 बजे', title: 'स्वागत एवं आशीर्वाद समारोह' },
     { time: 'रात्रि 8:45 बजे', title: 'केक काटने की रस्म' },
